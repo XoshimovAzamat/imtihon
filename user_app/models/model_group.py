@@ -7,4 +7,3 @@ class GroupStudent(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     teacher = models.ManyToManyField(Teacher, related_name='get_teacher')
     # table = models.ForeignKey(Table, on_delete=models.RESTRICT)
-

@@ -7,10 +7,10 @@ from .views import *
 
 router = DefaultRouter()
 router.register(r'teacher-crud', TeacherViewSet, basename='teacher')
-router.register(r'student-crud', StudentViewSet, basename='student')
-
 urlpatterns = [
     path('teacher_post/', TeacherApi.as_view()),
     path('', include(router.urls)),
     path('users/', UserApi.as_view(), name='user-list'),
+    path('student_crud/', StudentCrudApi.as_view(), name='student-crud'),
+    path('user/', UserStudentCreateApi.as_view(), name='user-crud'),
 ]
