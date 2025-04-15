@@ -1,8 +1,12 @@
 from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, AbstractUser
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from ..views import *
+from django.contrib.auth.models import User
 
 class BaseModel(models.Model):
     created_at = models.DateField(auto_now_add=True)

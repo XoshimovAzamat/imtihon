@@ -18,6 +18,7 @@ class Departments(BaseModel):
     def __str__(self):
         return self.title
 
+
 class Teacher(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
     departments = models.ManyToManyField(Departments, related_name='get_department')

@@ -1,11 +1,17 @@
 from django.contrib.auth import authenticate
 from django.db import transaction
-
 from rest_framework import serializers
-from ..models import *
+from rest_framework import serializers
+from django.contrib.auth.models import User
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User  # Endi User aniqlangan
+        fields = "__all__"
 
 
-class LoginSerializer(serializers.Serializer):
+
+class  LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
 
@@ -88,19 +94,12 @@ class LoginSerializer(serializers.Serializer):
 #
 #
 
-
-from rest_framework import serializers
-from ..models import *
-
-
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
             'id', 'phone_number', 'password',  'is_active', 'is_staff', "is_teacher", 'is_admin', 'is_student')
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
+
 
 
 # class UserSerializer(serializers.ModelSerializer):
@@ -152,22 +151,33 @@ class VerifySMSSerializer(serializers.Serializer):
     verification_code = serializers.CharField()
 
 
-class CourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = ['id', 'title', 'descriptions']
+# class CourseSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Course
+#         fields = ['id', 'title', 'descriptions']
 
 
-class DepartmentsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Departments
-        fields = ['id', 'title', 'is_active', 'descriptions']
+# class DepartmentsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Departments
+#         fields = ['id', 'title', 'is_active', 'descriptions']
+
+# class LoginApi(APIView):
+#     permission_classes = [AllowAny]
+#     def post(self, request):
+#         serializer = LoginSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#
+#         user = serializer.validated_data.get('user')
+#         token = get_tokens_for_user(user)
+#         return Response(data=token, status=status.HTTP_200_OK)
 
 
-class TeacherSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Teacher
-        fields = ["id", 'user', 'departments', 'course', 'descriptions']
+
+# class TeacherSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Teacher
+#         fields = ["id", 'user', 'departments', 'course', 'descriptions']
 
 
 # class RoomSerializer(serializers.ModelSerializer):
